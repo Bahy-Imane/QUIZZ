@@ -10,7 +10,7 @@
 }
 body{
 	background-image:url("collorfullbg.jpg");
-   
+   background-color: black;
 }
 
 .SEC1{
@@ -19,7 +19,14 @@ body{
     justify-content: space-around;
     align-items: center;
     padding-top: 70px;
-   	
+    pointer-events: auto;
+   	transition: .3s ease;
+}
+
+
+.SEC1.active{
+    filter: blur(15px);
+    pointer-events: none;
 }
 
 
@@ -64,8 +71,9 @@ body{
 
 .btn-group{
     position: absolute;
-    top: 32%;
-    left: 22%;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(.9);
     background-color: rgb(186, 152, 189);
     opacity: 10px;
     width: 55%;
@@ -80,6 +88,7 @@ body{
 .btn-group.active{
     opacity: 1;
     pointer-events: auto;
+    transform: translate(-50%,-50%) scale(1);
 }
 
 .hd{
