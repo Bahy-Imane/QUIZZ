@@ -28,19 +28,19 @@ const questions = [
             question: "Quelle est la différence entre une classe et un objet en Java ?",
             answer: 2,
             options: [
-                "A. Une classe et un objet sont des termes interchangeables en Java.",
+                "A. Une classe et un objet sont la même chose.",
                 "B. Une classe est un objet et un objet est une méthode en Java.",
-                "C. Une classe est un plan et un objet est une chose réelle créée à partir de ce plan."
+                "C. Une classe est un modèle à partir duquel des objets sont créés, tandis qu'un objet est une instance spécifique d'une classe."
             ]
         },
         {
 
-            question: "Qu'est-ce qu'une exception en Java ?",
+            question: "Comment déclarer un tableau d'entiers en Java ?",
             answer: 1,
             options: [
-                "A. Une exception est une condition normale dans un programme Java.",
-                "B. Une exception est une erreur dans un programme.",
-                "C. Une exception est une fonctionnalité optionnelle dans Java."
+                "A. array int[];",
+                "B. int[] array;",
+                "C. array[] int;"
             ]
         },
         {
@@ -54,12 +54,12 @@ const questions = [
         },
         {
 
-            question: "Qu'est-ce que l'héritage en Java ?",
+            question: "Quelle est la méthode utilisée pour obtenir la longueur d'une chaîne de caractères en Java ? ?",
             answer:2,
             options: [
-                "A. L'héritage est un moyen de stocker des données dans Java.",
-                "B. L'héritage permet à une classe de prendre les caractéristiques d'une autre.",
-                "C. L'héritage est une méthode pour créer des instances d'objets en Java."
+                "A. size()",
+                "B. count()",
+                "C. length() ."
             ]
         }
     ];
@@ -85,7 +85,7 @@ btnctne.addEventListener('click',  () => {
     quizcontainer.classList.add('active');
     btngroup.classList.remove('active');
     SEC1.classList.remove('active');
-    showQuestion(); // Afficher la première question
+    showQuestion();
 });
 
 // Fonction pour afficher une question
@@ -94,10 +94,9 @@ function showQuestion() {
     questionContainer.textContent = currentQuestion.question;
     questionNumber.textContent = `Question : ${currentQuestionIndex + 1} / ${questions.length}`;
 
-    // Réinitialisation de la liste des options
     optionList.innerHTML = '';
 
-    // Création et ajout des options à la liste
+
     currentQuestion.options.forEach((option, index) => {
         const optionElement = document.createElement('div');
         optionElement.className = 'option';
@@ -113,11 +112,10 @@ function handleOptionClick(event) {
     const selectedOptionIndex = parseInt(event.target.dataset.index);
     const currentQuestion = questions[currentQuestionIndex];
     if (selectedOptionIndex === currentQuestion.answer) {
-        score++; // Incrémenter le score si la réponse est correcte
+        score++;
         scoreElement.textContent = `Score : ${score} / ${questions.length}`;
     }
 
-    // Désactiver les options après avoir choisi une réponse
     optionList.querySelectorAll('.option').forEach(option => {
         option.removeEventListener('click', handleOptionClick);
         option.classList.add('disabled');
@@ -125,16 +123,13 @@ function handleOptionClick(event) {
     event.target.classList.add('selected');
 }
 
-// Gestion de l'événement au clic sur le bouton "Next"
-nxtBtn.addEventListener('click', () => {
-    // Passer à la question suivante
-    currentQuestionIndex++;
 
+nxtBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-        showQuestion(); // Afficher la prochaine question
+        showQuestion();
     } else {
-        // Afficher le score final lorsque toutes les questions ont été répondues
-        alert(`Votre score final est : ${score} / ${questions.length}`);
+        alert(`Your final score is : ${score} / ${questions.length}`);
     }
 });
 
