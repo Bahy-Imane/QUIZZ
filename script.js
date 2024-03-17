@@ -88,11 +88,12 @@ btnctne.addEventListener('click',  () => {
     showQuestion();
 });
 
-// Fonction pour afficher une question
+
 function showQuestion() {
     const currentQuestion = questions[currentQuestionIndex];
     questionContainer.textContent = currentQuestion.question;
     questionNumber.textContent = `Question : ${currentQuestionIndex + 1} / ${questions.length}`;
+
 
     optionList.innerHTML = '';
 
@@ -101,13 +102,13 @@ function showQuestion() {
         const optionElement = document.createElement('div');
         optionElement.className = 'option';
         optionElement.textContent = option;
-        optionElement.dataset.index = index; // Stockage de l'index de l'option
+        optionElement.dataset.index = index;
         optionElement.addEventListener('click', handleOptionClick);
         optionList.appendChild(optionElement);
     });
 }
 
-// Fonction pour gérer le clic sur une option
+
 function handleOptionClick(event) {
     const selectedOptionIndex = parseInt(event.target.dataset.index);
     const currentQuestion = questions[currentQuestionIndex];
@@ -115,6 +116,7 @@ function handleOptionClick(event) {
         score++;
         scoreElement.textContent = `Score : ${score} / ${questions.length}`;
     }
+
 
     optionList.querySelectorAll('.option').forEach(option => {
         option.removeEventListener('click', handleOptionClick);
@@ -125,11 +127,14 @@ function handleOptionClick(event) {
 
 
 nxtBtn.addEventListener('click', () => {
+
     currentQuestionIndex++;
+
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
-        alert(`Your final score is : ${score} / ${questions.length}`);
+
+        alert(`Votre score final est : ${score} / ${questions.length}`);
     }
 });
 
